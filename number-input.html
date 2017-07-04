@@ -8,7 +8,7 @@
       }
     </style>
     <h2>Hello [[_internalValue]]!</h2>
-    <input type="text" value="{{_internalValue::input}}">
+    <input type="text" on-blur="validateAndFormat" value="{{_internalValue::input}}">
   </template>
 
   <script>
@@ -30,6 +30,21 @@
             type: String
           }
         };
+      }
+      static _parseNumber(numberToBeParsed) {
+        if (numberToBeParsed) {
+          const thousandsSeparatorsRemoved = numberToBeParsed.replace(/,/g, '');
+          return parseFloat(thousandsSeparatorsRemoved);
+        }
+      }
+
+      validateAndFormat() {
+        if (this._internalValue) {
+          const parsedNumber = NumberInput._parseNumber(this._internalValue);
+          if (!isNaN(parsedNumber)) {
+            this._internalValue = parsedNumber.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+          }
+        }
       }
     }
 

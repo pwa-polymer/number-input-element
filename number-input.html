@@ -7,25 +7,27 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <h2>Hello [[_internalValue]]!</h2>
+    <input type="text" value="{{_internalValue::input}}">
   </template>
 
   <script>
     /**
      * `number-input`
-     * 
+     *
      *
      * @customElement
      * @polymer
      * @demo demo/index.html
      */
     class NumberInput extends Polymer.Element {
-      static get is() { return 'number-input'; }
+      static get is() {
+        return 'number-input';
+      }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'number-input'
+          _internalValue: {
+            type: String
           }
         };
       }

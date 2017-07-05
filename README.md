@@ -2,7 +2,7 @@
 
 ## Install prerequisites
 
-You need a Git client, the [Node.js](https://nodejs.org/), the [Bower package manager](https://bower.io/) and the https://github.com/angular/angular-cli[Polymer CLI] to start the demo.
+You need a Git client, the [Node.js](https://nodejs.org/), the [Bower package manager](https://bower.io/) and the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) to start the demo.
 It is highly recommended to use the following versions:
 
 * Node.js 6.10.2

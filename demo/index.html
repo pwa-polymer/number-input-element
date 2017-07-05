@@ -16,6 +16,11 @@
       <style is="custom-style" include="demo-pages-shared-styles">
       </style>
     </custom-style>
+    <style>
+      number-input {
+        --invalid-input-border-color: pink;
+      }
+    </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
@@ -25,6 +30,13 @@
           <number-input></number-input>
         </template>
       </demo-snippet>
+      <script>
+        const numberInputElement = document.querySelector("number-input");
+        numberInputElement.value = 8765432.54;
+        numberInputElement.addEventListener('value-changed', function () {
+            console.log('number-input value changed to: ' + numberInputElement.value);
+        });
+      </script>
     </div>
   </body>
 </html>

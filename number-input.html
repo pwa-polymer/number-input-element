@@ -7,10 +7,9 @@
         display: block;
       }
       input.invalid {
-        border-color: red;
+        border-color: var(--invalid-input-border-color, red);
       }
     </style>
-    <h2>Hello [[_internalValue]]!</h2>
     <input type="text" class$="[[_internalClass]]" on-blur="validateAndFormat" value="{{_internalValue::input}}">
   </template>
 
@@ -30,6 +29,11 @@
 
       static get properties() {
         return {
+          value: {
+            type: Number,
+            notify: true,
+            observer: '_valueChanged'
+          },
           _internalValue: {
             type: String
           },
@@ -46,14 +50,23 @@
         }
       }
 
+      _valueChanged(newValue) {
+        if (newValue) {
+          this._internalValue = '' + newValue;
+          this.validateAndFormat();
+        }
+      }
+
       validateAndFormat() {
         if (this._internalValue) {
           const parsedNumber = NumberInput._parseNumber(this._internalValue);
           if (isNaN(parsedNumber)) {
             this._internalClass = 'invalid';
+            this.value = null;
           } else {
             this._internalClass = '';
             this._internalValue = parsedNumber.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            this.value = parsedNumber;
           }
         }
       }

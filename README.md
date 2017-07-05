@@ -52,14 +52,15 @@ npm install -g polymer-cli
 git clone https://github.com/pwa-polymer/number-input-element.git -b 1-start
 ```
 
+### Install Bower dependencies
+
+```
+cd number-input-element
+bower install
+```
+
 ### View your element
 
 ```
-$ polymer serve
-```
-
-### Run tests
-
-```
-$ polymer test
+$ polymer serve --open
 ```
